@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import Sidebar from '../components/Sidebar/Sidebar';
-import Navbar from '../components/Navbar/Navbar';
+import Navbar from '../components/Navbar/DashboardNavbar';
 
 const drawerWidth = 240;
 
