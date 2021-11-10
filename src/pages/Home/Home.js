@@ -1,11 +1,11 @@
 import React from 'react'
 
-function AuthLayout() {
+function Home() {
     return (
         <div>
-
+            Home
         </div>
     )
 }
 
-export default AuthLayout
+export default Home
