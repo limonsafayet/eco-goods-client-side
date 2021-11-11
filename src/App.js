@@ -9,15 +9,25 @@ import WebLayout from "./layouts/WebLayout";
 import Home from "./pages/Home/Home";
 
 function App() {
+
+  const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
+    <GuardedRoute {...rest} render={props => (
+      <Layout>
+        <Component {...props} />
+      </Layout>
+    )}>
+    </GuardedRoute>
+  )
+
   return (
     <>
       <Router>
         <Switch>
-          <WebLayout>
+          {/* <WebLayout>
             <Route exact path="/">
               <Home />
             </Route>
-          </WebLayout>
+          </WebLayout> */}
           <DashboardLayout>
             <Route exact path="/dashboard">
               <Dashboard />

@@ -10,7 +10,7 @@ function Navbar() {
             <AppBar position="static" sx={{ bgcolor: 'text.primary' }}>
                 <Toolbar>
                     <Box sx={{ flexGrow: 1 }}>
-                        <img src={logo} />
+                        <img src={logo} alt="EcoGoods" />
                     </Box>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
