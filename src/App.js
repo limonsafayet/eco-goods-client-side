@@ -19,16 +19,22 @@ function App() {
     </Route>
   )
 
+  const DashboardRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => (
+      <DashboardLayout>
+        <Component {...props} />
+      </DashboardLayout>
+    )}>
+    </Route>
+  )
+
+
   return (
     <>
       <Router>
         <Switch>
           <WebRoute exact path="/" component={Home} />
-          <DashboardLayout>
-            <Route exact path="/dashboard">
-              <Dashboard />
-            </Route>
-          </DashboardLayout>
+          <DashboardRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
     </>
