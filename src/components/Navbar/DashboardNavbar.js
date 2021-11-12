@@ -7,11 +7,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-
-
+import useAuth from '../../hooks/useAuth';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 export default function Navbar({ handleDrawerToggle }) {
+    const { logout } = useAuth();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -41,7 +42,7 @@ export default function Navbar({ handleDrawerToggle }) {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Photos
+                    Dashboard
                 </Typography>
 
                 <div>
@@ -70,8 +71,7 @@ export default function Navbar({ handleDrawerToggle }) {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
+                        <MenuItem onClick={logout}>Logout <LogoutIcon sx={{ marginLeft: ".4rem" }} /></MenuItem>
                     </Menu>
                 </div>
 

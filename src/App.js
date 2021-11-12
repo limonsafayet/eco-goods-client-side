@@ -11,6 +11,7 @@ import Login from "./pages/Login/Login";
 
 import AuthProvider from "./contexts/AuthProvider";
 import Register from "./pages/Register/Register";
+import PrivateRoute from "./utilities/privateRoute";
 
 function App() {
 
@@ -23,14 +24,6 @@ function App() {
     </Route>
   )
 
-  const DashboardRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
-      <DashboardLayout>
-        <Component {...props} />
-      </DashboardLayout>
-    )}>
-    </Route>
-  )
 
 
   return (
@@ -41,8 +34,7 @@ function App() {
             <WebRoute exact path="/" component={Home} />
             <WebRoute exact path="/login" component={Login} />
             <WebRoute exact path="/register" component={Register} />
-
-            <DashboardRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
           </Switch>
         </Router>
       </AuthProvider>

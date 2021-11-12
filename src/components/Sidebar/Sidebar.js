@@ -28,8 +28,8 @@ function Sidebar() {
 
         <div>
             <Toolbar>
-                <Typography variant="h6" noWrap component="div">
-                    Traideas
+                <Typography variant="h6" noWrap component={Link} to="/" sx={{ textDecoration: "none", color: "black" }}>
+                    Eco Goods
                 </Typography>
             </Toolbar>
             <Divider />

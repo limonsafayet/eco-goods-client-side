@@ -25,7 +25,7 @@ const useFirebase = () => {
                 const newUser = { email, displayName: name };
                 setUser(newUser);
                 // save user to the database
-                saveUser(email, name);
+                saveUser(email, name, 'POST');
                 // send name to firebase after creation
                 updateProfile(auth.currentUser, {
                     displayName: name
@@ -106,9 +106,15 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
-    const saveUser = (email, displayName) => {
+    const saveUser = (email, displayName, method) => {
         const user = { email, displayName };
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/users`, user)
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
             .then()
     }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { CircularProgress } from '@mui/material';
 import { Redirect, Route } from 'react-router';
 import useAuth from "../hooks/useAuth"
+import DashboardLayout from '../layouts/DashboardLayout';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const { user, isLoading } = useAuth();
@@ -11,7 +12,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     return (
         <Route
             {...rest}
-            render={props => user.email ? <Component {...props} {...rest} /> : <Redirect
+            render={props => user.email ? <DashboardLayout><Component {...props} {...rest} /></DashboardLayout> : <Redirect
                 to={{
                     pathname: "/login",
                     state: { from: props.location }
