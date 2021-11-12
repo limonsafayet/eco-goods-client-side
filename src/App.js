@@ -10,6 +10,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 
 import AuthProvider from "./contexts/AuthProvider";
+import Register from "./pages/Register/Register";
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
           <Switch>
             <WebRoute exact path="/" component={Home} />
             <WebRoute exact path="/login" component={Login} />
+            <WebRoute exact path="/register" component={Register} />
 
             <DashboardRoute exact path="/dashboard" component={Dashboard} />
           </Switch>

@@ -26,6 +26,7 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle(location, history)
     }
+    //console.log(process.env.REACT_APP_BACKEND_URL)
     return (
         <Container>
             <Grid container spacing={2}>

@@ -1,6 +1,7 @@
 import initializeFirebase from "../utilities/firebase.init";
 import { useState, useEffect } from 'react';
-
+import axios from "axios";
+import Swal from "sweetalert2";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, updateProfile, getIdToken, signOut } from "firebase/auth";
 
 // initialize firebase app
@@ -24,18 +25,23 @@ const useFirebase = () => {
                 const newUser = { email, displayName: name };
                 setUser(newUser);
                 // save user to the database
-                saveUser(email, name, 'POST');
+                saveUser(email, name);
                 // send name to firebase after creation
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
                 }).catch((error) => {
+                    Swal.fire(
+                        'Error!',
+                        error.message,
+                        'error'
+                    )
                 });
                 history.replace('/');
             })
             .catch((error) => {
                 setAuthError(error.message);
-                console.log(error);
+                //console.log(error);
             })
             .finally(() => setIsLoading(false));
     }
@@ -86,8 +92,7 @@ const useFirebase = () => {
     }, [auth])
 
     useEffect(() => {
-        fetch(`https://stark-caverns-04377.herokuapp.com/users/${user.email}`)
-            .then(res => res.json())
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${user.email}`)
             .then(data => setAdmin(data.admin))
     }, [user.email])
 
@@ -101,15 +106,9 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
-    const saveUser = (email, displayName, method) => {
+    const saveUser = (email, displayName) => {
         const user = { email, displayName };
-        fetch('https://stark-caverns-04377.herokuapp.com/users', {
-            method: method,
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/users`, user)
             .then()
     }
 
@@ -119,6 +118,7 @@ const useFirebase = () => {
         token,
         isLoading,
         authError,
+        setAuthError,
         registerUser,
         loginUser,
         signInWithGoogle,
