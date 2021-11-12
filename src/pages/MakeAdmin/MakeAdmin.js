@@ -1,4 +1,4 @@
-import { Button, TextField, Alert } from '@mui/material';
+import { Button, TextField, Alert, Grid } from '@mui/material';
 import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
@@ -31,19 +31,23 @@ const MakeAdmin = () => {
         e.preventDefault()
     }
     return (
-        <div>
-            <h2>Make an Admin</h2>
-            <form onSubmit={handleAdminSubmit}>
-                <TextField
-                    sx={{ width: '50%' }}
-                    label="Email"
-                    type="email"
-                    onBlur={handleOnBlur}
-                    variant="standard" />
-                <Button type="submit" variant="contained">Make Admin</Button>
-            </form>
-            {success && <Alert severity="success">Made Admin successfully!</Alert>}
-        </div>
+
+        <Grid container>
+            <Grid item xs={12} md={6} sx={{ margin: "auto" }}>
+                <h2>Make an Admin</h2>
+                <form onSubmit={handleAdminSubmit}>
+                    <TextField
+                        sx={{ width: '100%' }}
+                        label="Email"
+                        type="email"
+                        onBlur={handleOnBlur}
+                        variant="standard" />
+                    <Button type="submit" sx={{ mt: 2 }} variant="contained">Make Admin</Button>
+                </form>
+                {success && <Alert severity="success" sx={{ mt: 2 }}>Made Admin successfully!</Alert>}
+            </Grid>
+        </Grid>
+
     );
 };
 

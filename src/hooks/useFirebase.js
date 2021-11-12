@@ -93,7 +93,10 @@ const useFirebase = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${user.email}`)
-            .then(data => setAdmin(data.admin))
+            .then(data => {
+                console.log(data.admin)
+                setAdmin(data.admin)
+            })
     }, [user.email])
 
     const logout = () => {

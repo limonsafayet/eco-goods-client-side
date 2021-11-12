@@ -4,15 +4,19 @@ import {
   Route
 } from "react-router-dom";
 import Dashboard from './pages/Dashboard/Dashboard';
-import DashboardLayout from './layouts/DashboardLayout';
+
 import WebLayout from "./layouts/WebLayout";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
+
+import PrivateRoute from "./utilities/privateRoute";
+import AdminRoute from "./utilities/adminRoute";
 
 import AuthProvider from "./contexts/AuthProvider";
+
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import PrivateRoute from "./utilities/privateRoute";
 import MakeAdmin from "./pages/MakeAdmin/MakeAdmin";
+
 
 function App() {
 
@@ -36,7 +40,8 @@ function App() {
             <WebRoute exact path="/login" component={Login} />
             <WebRoute exact path="/register" component={Register} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            <PrivateRoute exact path="/makeadmin" component={MakeAdmin} />
+            <AdminRoute exact path="/makeadmin" component={MakeAdmin} />
+
 
           </Switch>
         </Router>
