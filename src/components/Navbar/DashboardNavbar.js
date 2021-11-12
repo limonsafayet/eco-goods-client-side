@@ -12,7 +12,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 const drawerWidth = 240;
 export default function Navbar({ handleDrawerToggle }) {
-    const { logout } = useAuth();
+    const { user, logout } = useAuth();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -71,6 +71,7 @@ export default function Navbar({ handleDrawerToggle }) {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
+                        <MenuItem onClick={handleClose}>{user.displayName}</MenuItem>
                         <MenuItem onClick={logout}>Logout <LogoutIcon sx={{ marginLeft: ".4rem" }} /></MenuItem>
                     </Menu>
                 </div>
