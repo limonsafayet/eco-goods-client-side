@@ -7,6 +7,9 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import DashboardLayout from './layouts/DashboardLayout';
 import WebLayout from "./layouts/WebLayout";
 import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+
+import AuthProvider from "./contexts/AuthProvider";
 
 function App() {
 
@@ -31,12 +34,16 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Switch>
-          <WebRoute exact path="/" component={Home} />
-          <DashboardRoute exact path="/dashboard" component={Dashboard} />
-        </Switch>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <WebRoute exact path="/" component={Home} />
+            <WebRoute exact path="/login" component={Login} />
+
+            <DashboardRoute exact path="/dashboard" component={Dashboard} />
+          </Switch>
+        </Router>
+      </AuthProvider>
     </>
   );
 }
