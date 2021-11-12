@@ -41,6 +41,12 @@ function Sidebar() {
                     </ListItemIcon>
                     <ListItemText primary="Dashboard" />
                 </ListItem>
+                <ListItem button component={Link} to="/makeadmin">
+                    <ListItemIcon>
+                        <InboxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Make Admin" />
+                </ListItem>
 
                 <>
                     <ListItemButton onClick={handleClick}>

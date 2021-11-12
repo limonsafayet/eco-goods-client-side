@@ -12,6 +12,7 @@ import Login from "./pages/Login/Login";
 import AuthProvider from "./contexts/AuthProvider";
 import Register from "./pages/Register/Register";
 import PrivateRoute from "./utilities/privateRoute";
+import MakeAdmin from "./pages/MakeAdmin/MakeAdmin";
 
 function App() {
 
@@ -35,6 +36,8 @@ function App() {
             <WebRoute exact path="/login" component={Login} />
             <WebRoute exact path="/register" component={Register} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/makeadmin" component={MakeAdmin} />
+
           </Switch>
         </Router>
       </AuthProvider>
