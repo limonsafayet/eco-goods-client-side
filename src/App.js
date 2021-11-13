@@ -18,6 +18,7 @@ import Register from "./pages/Register/Register";
 import MakeAdmin from "./pages/MakeAdmin/MakeAdmin";
 import AddProduct from "./pages/Products/AddProduct";
 import ManageProducts from "./pages/Products/ManageProducts";
+import Products from "./pages/Products/Products";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Router>
           <Switch>
             <WebRoute exact path="/" component={Home} />
+            <WebRoute exact path="/products" component={Products} />
             <WebRoute exact path="/login" component={Login} />
             <WebRoute exact path="/register" component={Register} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
