@@ -20,6 +20,7 @@ import AddProduct from "./pages/Products/AddProduct";
 import ManageProducts from "./pages/Products/ManageProducts";
 import Products from "./pages/Products/Products";
 import Purchase from "./pages/Purchase/Purchase";
+import MyOrders from "./pages/MyOrders/MyOrders";
 
 
 function App() {
@@ -46,6 +47,8 @@ function App() {
             <WebRoute exact path="/register" component={Register} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/purchase" component={Purchase} />
+            <PrivateRoute exact path="/my-orders" component={MyOrders} />
+
             <AdminRoute exact path="/makeadmin" component={MakeAdmin} />
             <AdminRoute exact path="/add-product" component={AddProduct} />
             <AdminRoute exact path="/manage-products" component={ManageProducts} />
