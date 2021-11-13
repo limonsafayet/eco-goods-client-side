@@ -17,6 +17,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import MakeAdmin from "./pages/MakeAdmin/MakeAdmin";
 import AddProduct from "./pages/Products/AddProduct";
+import ManageProducts from "./pages/Products/ManageProducts";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <AdminRoute exact path="/makeadmin" component={MakeAdmin} />
             <AdminRoute exact path="/add-product" component={AddProduct} />
+            <AdminRoute exact path="/manage-products" component={ManageProducts} />
 
 
           </Switch>

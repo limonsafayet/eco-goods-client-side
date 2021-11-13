@@ -79,7 +79,11 @@ const useFirebase = () => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
-                //getAdmin(user.email)
+                getAdmin(user.email)
+                    .then(res => {
+                        //console.log(data)
+                        setAdmin(res.data.admin)
+                    })
                 getIdToken(user)
                     .then(idToken => {
                         setToken(idToken);
@@ -93,13 +97,10 @@ const useFirebase = () => {
     }, [auth])
 
 
-    /* onst getAdmin = (email) => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${email}`)
-            .then(data => {
-                console.log(data)
-                setAdmin(data.admin)
-            })
-    } */
+    const getAdmin = (email) => {
+        return axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${email}`)
+
+    }
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${user.email}`)
@@ -107,6 +108,7 @@ const useFirebase = () => {
                 // console.log(data)
                 setAdmin(res.data.admin)
             })
+        //setIsLoading(false);
     }, [user.email])
 
     const logout = () => {
