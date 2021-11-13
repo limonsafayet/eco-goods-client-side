@@ -33,7 +33,7 @@ const MakeAdmin = () => {
     return (
 
         <Grid container>
-            <Grid item xs={12} md={6} sx={{ margin: "auto" }}>
+            <Grid item xs={12} md={5} sx={{ margin: "auto" }}>
                 <h2>Make an Admin</h2>
                 <form onSubmit={handleAdminSubmit}>
                     <TextField
@@ -41,6 +41,7 @@ const MakeAdmin = () => {
                         label="Email"
                         type="email"
                         onBlur={handleOnBlur}
+                        required
                         variant="standard" />
                     <Button type="submit" sx={{ mt: 2 }} variant="contained">Make Admin</Button>
                 </form>
