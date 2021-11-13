@@ -34,8 +34,8 @@ function SingleProduct({ product }) {
                     <Link to={{
                         pathname: `/purchase`,
                         state: product
-                    }}>
-                        <Button color="primary">
+                    }} className="decorNone">
+                        <Button variant="outlined" color="primary">
                             Buy Now
                         </Button>
                     </Link>
