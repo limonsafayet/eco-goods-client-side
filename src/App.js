@@ -21,6 +21,8 @@ import ManageProducts from "./pages/Products/ManageProducts";
 import Products from "./pages/Products/Products";
 import Purchase from "./pages/Purchase/Purchase";
 import MyOrders from "./pages/MyOrders/MyOrders";
+import Pay from "./pages/Pay/Pay";
+import ManageOrders from "./pages/ManageOrders.js/ManageOrders";
 
 
 function App() {
@@ -48,10 +50,12 @@ function App() {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/purchase" component={Purchase} />
             <PrivateRoute exact path="/my-orders" component={MyOrders} />
+            <PrivateRoute exact path="/pay" component={Pay} />
 
             <AdminRoute exact path="/makeadmin" component={MakeAdmin} />
             <AdminRoute exact path="/add-product" component={AddProduct} />
             <AdminRoute exact path="/manage-products" component={ManageProducts} />
+            <AdminRoute exact path="/manage-orders" component={ManageOrders} />
 
 
           </Switch>

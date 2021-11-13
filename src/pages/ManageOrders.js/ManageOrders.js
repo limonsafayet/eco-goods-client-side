@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2';
 import DeleteIcon from '@mui/icons-material/Delete';
-import useAuth from '../../hooks/useAuth';
+import EditIcon from '@mui/icons-material/Edit';
 
-function MyOrders() {
+function ManageOrders() {
     const [orders, setOrders] = useState([]);
-    const { user } = useAuth();
+
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/orders/${user?.email}`)
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/orders`)
             .then(res => setOrders(res.data))
     }, []);
 
@@ -28,10 +28,43 @@ function MyOrders() {
                     .then(res => {
                         Swal.fire(
                             'Deleted!',
-                            'Your orders has been deleted.',
+                            'Orders has been deleted.',
                             'success'
                         )
                         setOrders(orders.filter(item => item._id !== id));
+                    })
+                    .catch(err => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!'
+                        })
+                    })
+
+            }
+        })
+    }
+
+    const handleEdit = id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You wont to update the status",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, update it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.put(`${process.env.REACT_APP_BACKEND_URL}/orders/${id}`)
+                    .then(res => {
+                        Swal.fire(
+                            'Updated!',
+                            'Status has been updated.',
+                            'success'
+                        )
+                        setOrders(orders.filter(item => (item._id == id) ? item.status = ((item.status == "true") ? "false" : "true") : item));
+
                     })
                     .catch(err => {
                         Swal.fire({
@@ -77,7 +110,10 @@ function MyOrders() {
                                 <TableCell>{order.clientPhone}</TableCell>
                                 <TableCell>{order.clientAddress}</TableCell>
                                 <TableCell>{order.status == "true" ? <Button variant="outlined" color="success">Shipped</Button> : <Button variant="outlined" color="warning">Pending</Button>}</TableCell>
-                                <TableCell><Button variant="contained" color="error" onClick={() => handleDelete(order._id)}><DeleteIcon /></Button></TableCell>
+                                <TableCell>
+                                    <Button variant="contained" onClick={() => handleEdit(order._id)}><EditIcon /> Status</Button>
+                                    <Button variant="contained" sx={{ ml: 1 }} color="error" onClick={() => handleDelete(order._id)}><DeleteIcon /></Button>
+                                </TableCell>
                             </TableRow>
                         )}
                     </TableBody>
@@ -87,4 +123,4 @@ function MyOrders() {
     )
 }
 
-export default MyOrders
+export default ManageOrders
