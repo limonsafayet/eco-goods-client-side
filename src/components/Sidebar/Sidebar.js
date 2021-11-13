@@ -16,11 +16,11 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import StarBorder from '@mui/icons-material/StarBorder';
 import Typography from '@mui/material/Typography';
 
-
+import useAuth from '../../hooks/useAuth';
 
 function Sidebar() {
     const [open, setOpen] = React.useState(false);
-
+    const { admin } = useAuth();
     const handleClick = () => {
         setOpen(!open);
     };
@@ -33,55 +33,78 @@ function Sidebar() {
                 </Typography>
             </Toolbar>
             <Divider />
-            <List>
-
-                <ListItem button component={Link} to="/">
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Dashboard" />
-                </ListItem>
-                <ListItem button component={Link} to="/makeadmin">
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Make Admin" />
-                </ListItem>
-
+            {admin ?
                 <>
-                    <ListItemButton onClick={handleClick}>
+                    <List>
+                        <ListItem button component={Link} to="/manage-orders">
+                            <ListItemIcon>
+                                <InboxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Manage All Orders" />
+                        </ListItem>
+                        <>
+                            <ListItemButton onClick={handleClick}>
+                                <ListItemIcon>
+                                    <InboxIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Product" />
+                                {open ? <ExpandLess /> : <ExpandMore />}
+                            </ListItemButton>
+
+                            <Collapse in={open} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    <ListItemButton sx={{ pl: 4 }} component={Link} to="/add-product">
+                                        <ListItemIcon>
+                                            <StarBorder />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Add Product" />
+                                    </ListItemButton>
+                                    <ListItemButton sx={{ pl: 4 }} component={Link} to="/manage-products">
+                                        <ListItemIcon>
+                                            <StarBorder />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Manage Products" />
+                                    </ListItemButton>
+                                </List>
+                            </Collapse>
+                        </>
+
+                    </List>
+
+                    <Divider />
+                    <ListItem button component={Link} to="/makeadmin">
                         <ListItemIcon>
                             <InboxIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Inbox" />
-                        {open ? <ExpandLess /> : <ExpandMore />}
-                    </ListItemButton>
-
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItemButton sx={{ pl: 4 }}>
-                                <ListItemIcon>
-                                    <StarBorder />
-                                </ListItemIcon>
-                                <ListItemText primary="Starred" />
-                            </ListItemButton>
-                        </List>
-                    </Collapse>
+                        <ListItemText primary="Make Admin" />
+                    </ListItem>
+                </>
+                :
+                <>
+                    <List>
+                        <ListItem button component={Link} to="/my-orders">
+                            <ListItemIcon>
+                                <InboxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="My Orders" />
+                        </ListItem>
+                        <ListItem button component={Link} to="/pay">
+                            <ListItemIcon>
+                                <InboxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Pay" />
+                        </ListItem>
+                    </List>
+                    <Divider />
+                    <ListItem button component={Link} to="/review">
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Review" />
+                    </ListItem>
                 </>
 
-            </List>
-
-            <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
+            }
         </div>
     )
 }

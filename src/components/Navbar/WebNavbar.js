@@ -21,7 +21,7 @@ function Navbar() {
                         user?.email ?
                             <>
                                 <Button color="inherit" component={Link} to="/dashboard" sx={{ marginRight: "-1.5rem" }}>Dashboard</Button>
-                                <Button color="inherit" onClick={logout} sx={{ marginRight: "-1.5rem" }}> <LogoutIcon /></Button>
+                                <Button color="inherit" onClick={logout} sx={{ marginRight: "-1rem" }}> <LogoutIcon /></Button>
                             </>
                             : <Button color="inherit" component={Link} to="/login">Login</Button>
 
