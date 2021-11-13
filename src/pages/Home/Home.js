@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import bannerImg from "../../images/banner-home.png"
@@ -8,8 +8,15 @@ import icon1 from "../../images/icon-1.png"
 import icon2 from "../../images/icon-3.png"
 import icon3 from "../../images/icon-4.png"
 import icon4 from "../../images/icon-5.png"
+import axios from 'axios';
+import SingleReview from '../../components/SingleReview/SingleReview';
 function Home() {
     const [productsData] = useProducts();
+    const [reviews, setReviews] = useState([])
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/reviews`)
+            .then(res => setReviews(res.data))
+    }, []);
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={5}>
@@ -26,7 +33,7 @@ function Home() {
                             />)
                         }
                     </Grid>
-                    <Grid item xs={12} sm={12} md={10} lg={6} sx={{ textAlign: "center", margin: "auto", mt: 8 }}>
+                    <Grid item xs={12} sm={12} md={10} lg={6} sx={{ textAlign: "center", margin: "auto", mt: 8, }}>
                         <h1 style={{ color: "green" }}>
                             We love to make your self-care routine simple & easy delivered to your door. At your own timing. And then you smile. This is basically our happy motto.
                             SIMPLE ACTIONS. BIG SMILES :)
@@ -44,6 +51,19 @@ function Home() {
                             <Grid item xs={12} sm={12} md={3}>
                                 <img src={icon4} alt="eco goods" />
                             </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={12} sx={{ textAlign: "center", margin: "auto", mt: 8, }}>
+                        <h1 style={{ color: "green" }}>
+                            We love the love you give us!
+                        </h1>
+                        <Grid container>
+                            {
+                                reviews.map(clientReview => <SingleReview
+                                    key={clientReview._id}
+                                    clientReview={clientReview}
+                                />)
+                            }
                         </Grid>
                     </Grid>
                 </Grid>
