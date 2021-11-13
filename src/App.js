@@ -19,6 +19,7 @@ import MakeAdmin from "./pages/MakeAdmin/MakeAdmin";
 import AddProduct from "./pages/Products/AddProduct";
 import ManageProducts from "./pages/Products/ManageProducts";
 import Products from "./pages/Products/Products";
+import Purchase from "./pages/Purchase/Purchase";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <WebRoute exact path="/login" component={Login} />
             <WebRoute exact path="/register" component={Register} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/purchase" component={Purchase} />
             <AdminRoute exact path="/makeadmin" component={MakeAdmin} />
             <AdminRoute exact path="/add-product" component={AddProduct} />
             <AdminRoute exact path="/manage-products" component={ManageProducts} />

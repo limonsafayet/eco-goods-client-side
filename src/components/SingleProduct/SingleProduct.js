@@ -31,9 +31,14 @@ function SingleProduct({ product }) {
 
                 </CardActionArea>
                 <CardActions>
-                    <Button color="primary">
-                        Buy Now
-                    </Button>
+                    <Link to={{
+                        pathname: `/purchase`,
+                        state: product
+                    }}>
+                        <Button color="primary">
+                            Buy Now
+                        </Button>
+                    </Link>
                 </CardActions>
             </Card>
         </Grid>
