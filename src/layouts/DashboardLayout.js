@@ -10,7 +10,7 @@ import Navbar from '../components/Navbar/DashboardNavbar';
 const drawerWidth = 240;
 
 function DashboardLayout(props) {
-    { console.log(props) }
+
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 

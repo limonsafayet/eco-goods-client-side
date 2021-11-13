@@ -23,6 +23,7 @@ import Purchase from "./pages/Purchase/Purchase";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import Pay from "./pages/Pay/Pay";
 import ManageOrders from "./pages/ManageOrders.js/ManageOrders";
+import Review from "./pages/Review/Review";
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
             <PrivateRoute exact path="/purchase" component={Purchase} />
             <PrivateRoute exact path="/my-orders" component={MyOrders} />
             <PrivateRoute exact path="/pay" component={Pay} />
+            <PrivateRoute exact path="/review" component={Review} />
 
             <AdminRoute exact path="/makeadmin" component={MakeAdmin} />
             <AdminRoute exact path="/add-product" component={AddProduct} />

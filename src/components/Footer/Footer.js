@@ -1,6 +1,6 @@
 import React from 'react'
-import { AppBar, Toolbar, Grid } from '@mui/material'
-import { Typography } from '@mui/material'
+import { AppBar, Grid } from '@mui/material'
+
 function Footer() {
     return (
         <footer>
